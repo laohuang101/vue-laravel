@@ -6,7 +6,8 @@
       <Link :href="`/listing/${listing.id}`">
         <ListingAddress :listing="listing" />
       </Link>
-      <Link :href="`/listing/${listing.id}/edit`" class="edit-link">Edit</Link>
+      <Link :href="`/listing/${listing.id}/edit`" class="edit-link" as="button">Edit</Link>
+      <Link :href="`/listing/${listing.id}`" method="DELETE" class="edit-link" as="button">Delete</Link>
     </div>
   </div>
 </template>
@@ -21,6 +22,7 @@ defineProps({
 </script>
 
 <style scoped>
+@import "tailwindcss";
 .listing-item {
   margin: 10px 0;
   padding: 10px;

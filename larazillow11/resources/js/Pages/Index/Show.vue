@@ -18,3 +18,6 @@ export default {
     layout: MainLayout
 }
 </script>
+<style>
+@import "tailwindcss";
+</style>

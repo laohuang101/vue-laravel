@@ -76,7 +76,7 @@
   </script>
   
   <style scoped>
-
+@import "tailwindcss"; 
   label {
     margin-right: 2em;
   }

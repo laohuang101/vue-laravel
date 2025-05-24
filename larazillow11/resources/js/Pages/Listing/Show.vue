@@ -13,3 +13,6 @@ defineProps({
     listing: Object,
 });
 </script>
+<style>
+@import "tailwindcss";
+</style>
