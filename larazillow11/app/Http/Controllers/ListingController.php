@@ -34,7 +34,18 @@ class ListingController extends Controller
      */
     public function store(Request $request)
     {
-        listing::create($request->all());
+        $validated = $request->validate([
+            'beds' => 'required|integer|min:1|max:20',
+            'baths' => 'required|integer|min:1',
+            'area' => 'required|integer|min:1',
+            'city' => 'required|string|max:255',
+            'street' => 'required|string|max:255',
+            'code' => 'required|string|max:255',
+            'street_nr' => 'required|integer|min:1',
+            'price' => 'required|integer|min:1',
+        ]);
+
+        Listing::create($validated);
         session()->flash('success', 'Listing created successfully!');
         return Inertia::location(route('listing.index'));
     }
@@ -52,17 +63,32 @@ class ListingController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Listing $listing)
     {
-        //
+        return inertia('Listing/Edit', [
+            'listing' => $listing
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Listing $listing)
     {
-        //
+        $validated = $request->validate([
+            'beds' => 'required|integer|min:1',
+            'baths' => 'required|integer|min:1',
+            'area' => 'required|integer|min:1',
+            'city' => 'required|string|max:255',
+            'street' => 'required|string|max:255',
+            'code' => 'required|string|max:255',
+            'street_nr' => 'required|integer|min:1',
+            'price' => 'required|integer|min:1',
+        ]);
+
+        $listing->update($validated);
+        session()->flash('success', 'Listing updated successfully!');
+        return Inertia::location(route('listing.index'));
     }
 
     /**

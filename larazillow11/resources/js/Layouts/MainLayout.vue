@@ -3,7 +3,9 @@
         <Link href="/">Main Page</Link> &nbsp;
         <Link href="/hello">Show Page</Link> &nbsp;
         <Link href="/listing">Index Page</Link> &nbsp;
-        <Link href="/listing/create">Create Page</Link>
+        <Link href="/listing/create">Create Page</Link> &nbsp;
+        <Link href="/listing/update">Update Page</Link>
+        <br><br>
 
         <div v-if="success" class="success">
             {{ success }}
