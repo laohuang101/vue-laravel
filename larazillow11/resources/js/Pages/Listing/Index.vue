@@ -1,20 +1,23 @@
 <template>
-  <div>
-    <Link :href="`/listing/create`" class="btn">Create New Listing</Link>
-
-    <div v-for="listing in listings" :key="listing.id" class="listing-item">
+  <div class="flex">
+    <Link :href="`/listing/create`" class="btn ml-auto">+ Create New Listing</Link>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+    <Box v-for="listing in listings" :key="listing.id">
       <Link :href="`/listing/${listing.id}`">
         <ListingAddress :listing="listing" />
       </Link>
       <Link :href="`/listing/${listing.id}/edit`" class="edit-link" as="button">Edit</Link>
       <Link :href="`/listing/${listing.id}`" method="DELETE" class="edit-link" as="button">Delete</Link>
-    </div>
+    </Box>
   </div>
+  
 </template>
 
 <script setup>
 import { Link } from '@inertiajs/vue3'
-import ListingAddress from '../../Component/ListingAddress.vue';
+import ListingAddress from '@/Component/ListingAddress.vue';
+import Box from '@/Component/UI/Box.vue'
 
 defineProps({
   listings: Array,
@@ -23,13 +26,6 @@ defineProps({
 
 <style scoped>
 @import "tailwindcss";
-.listing-item {
-  margin: 10px 0;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
 .btn {
   display: inline-block;
   padding: 8px 16px;
