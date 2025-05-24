@@ -1,65 +1,107 @@
 <template>
-    <form @submit.prevent="create">
-      <div>
-        <div>
-          <label>Beds</label>
-          <input v-model.number="form.beds" type="text" />
-          <div v-if="form.errors.beds" style="color:red">{{ form.errors.beds }}</div>
+    <form @submit.prevent="create" class="max-w-2xl mx-auto p-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="col-span-2">
+                <h1 class="text-2xl font-bold mb-6">Create New Listing</h1>
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-gray-700">Beds</label>
+                <input 
+                    v-model.number="form.beds" 
+                    type="text" 
+                    class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                />
+                <div v-if="form.errors.beds" class="text-red-500 text-sm">{{ form.errors.beds }}</div>
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-gray-700">Baths</label>
+                <input 
+                    v-model.number="form.baths" 
+                    type="text" 
+                    class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                />
+                <div v-if="form.errors.baths" class="text-red-500 text-sm">{{ form.errors.baths }}</div>
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-gray-700">Area</label>
+                <input 
+                    v-model.number="form.area" 
+                    type="text" 
+                    class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                />
+                <div v-if="form.errors.area" class="text-red-500 text-sm">{{ form.errors.area }}</div>
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-gray-700">City</label>
+                <input 
+                    v-model="form.city" 
+                    type="text" 
+                    class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                />
+                <div v-if="form.errors.city" class="text-red-500 text-sm">{{ form.errors.city }}</div>
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-gray-700">Post Code</label>
+                <input 
+                    v-model="form.code" 
+                    type="text" 
+                    class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                />
+                <div v-if="form.errors.code" class="text-red-500 text-sm">{{ form.errors.code }}</div>
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-gray-700">Street</label>
+                <input 
+                    v-model="form.street" 
+                    type="text" 
+                    class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                />
+                <div v-if="form.errors.street" class="text-red-500 text-sm">{{ form.errors.street }}</div>
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-gray-700">Street Nr</label>
+                <input 
+                    v-model.number="form.street_nr" 
+                    type="text" 
+                    class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                />
+                <div v-if="form.errors.street_nr" class="text-red-500 text-sm">{{ form.errors.street_nr }}</div>
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-gray-700">Price</label>
+                <input 
+                    v-model.number="form.price" 
+                    type="text" 
+                    class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                />
+                <div v-if="form.errors.price" class="text-red-500 text-sm">{{ form.errors.price }}</div>
+            </div>
+
+            <div class="col-span-2 mt-6">
+                <button 
+                    type="submit" 
+                    :disabled="form.processing"
+                    class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50"
+                >
+                    Create Listing
+                </button>
+            </div>
         </div>
-  
-        <div>
-          <label>Baths</label>
-          <input v-model.number="form.baths" type="text" />
-          <div v-if="form.errors.baths" style="color:red">{{ form.errors.baths }}</div>
-        </div>
-  
-        <div>
-          <label>Area</label>
-          <input v-model.number="form.area" type="text" />
-          <div v-if="form.errors.area" style="color:red">{{ form.errors.area }}</div>
-        </div>
-  
-        <div>
-          <label>City</label>
-          <input v-model="form.city" type="text" />
-          <div v-if="form.errors.city" style="color:red">{{ form.errors.city }}</div>
-        </div>
-  
-        <div>
-          <label>Post Code</label>
-          <input v-model="form.code" type="text" />
-          <div v-if="form.errors.code" style="color:red">{{ form.errors.code }}</div>
-        </div>
-  
-        <div>
-          <label>Street</label>
-          <input v-model="form.street" type="text" />
-          <div v-if="form.errors.street" style="color:red">{{ form.errors.street }}</div>
-        </div>
-  
-        <div>
-          <label>Street Nr</label>
-          <input v-model.number="form.street_nr" type="text" />
-          <div v-if="form.errors.street_nr" style="color:red">{{ form.errors.street_nr }}</div>
-        </div>
-  
-        <div>
-          <label>Price</label>
-          <input v-model.number="form.price" type="text" />
-          <div v-if="form.errors.price" style="color:red">{{ form.errors.price }}</div>
-        </div>
-  
-        <div>
-          <button type="submit" :disabled="form.processing">Create</button>
-        </div>
-      </div>
     </form>
-  </template>
-  
-  <script setup>
-  import { useForm } from '@inertiajs/vue3'
-  
-  const form = useForm({
+</template>
+
+<script setup>
+import { useForm } from '@inertiajs/vue3'
+
+const form = useForm({
     beds: 0,
     baths: 0,
     area: 0,
@@ -68,20 +110,20 @@
     code: null,
     street_nr: null,
     price: 0,
-  })
-  
-  const create = () => {
+})
+
+const create = () => {
     form.post('/listing')
-  }
-  </script>
-  
-  <style scoped>
+}
+</script>
+
+<style scoped>
 @import "tailwindcss"; 
-  label {
-    margin-right: 2em;
-  }
-  
-  div {
-    padding: 2px
-  }
-  </style>
+label {
+  margin-right: 2em;
+}
+
+div {
+  padding: 2px
+}
+</style>
