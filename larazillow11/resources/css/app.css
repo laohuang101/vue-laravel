@@ -4,6 +4,6 @@
 
 @layer components{
     .label{
-        @apply 
+        @apply block text-sm font-medium text-gray-700
     }
 }
